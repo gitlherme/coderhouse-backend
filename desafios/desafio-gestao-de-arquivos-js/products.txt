@@ -1,0 +1,1 @@
+[{"id":2,"title":"Produto com Title Alterado","description":"Descrição do produto 2","code":12346,"price":100,"stock":1000,"thumbnail":"https://picsum.photos/200/200"}]
