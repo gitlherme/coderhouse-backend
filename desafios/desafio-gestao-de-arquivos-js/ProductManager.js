@@ -50,7 +50,7 @@ class ProductManager {
       stock
     });
 
-    fs.writeFile(this.path, JSON.stringify(products), (error) => {
+    fs.writeFile(this.path, JSON.stringify(products), 'utf-8', (error) => {
       if (error) console.error('Erro ao gravar arquivo.');
     })
   
@@ -76,7 +76,7 @@ class ProductManager {
       thumbnail: product.thumbnail || products[index].thumbnail,
     }
 
-    fs.writeFile(this.path, JSON.stringify(products), (error) => {
+    fs.writeFile(this.path, JSON.stringify(products), 'utf-8', (error) => {
       if (error) console.error('Erro ao gravar arquivo.');
     });
     return console.log('Produto alterado com sucesso! ✅');
@@ -85,7 +85,7 @@ class ProductManager {
   deleteProduct(id) {
     const products = this.getProducts();
     const newProducts = products.filter(product => product.id !== id);
-    fs.writeFile(this.path, JSON.stringify(newProducts), (error) => {
+    fs.writeFile(this.path, JSON.stringify(newProducts), 'utf-8', (error) => {
       if (error) console.error('Erro ao gravar arquivo.');
     });
     console.log('Produto removido com sucesso! ✅');
@@ -93,6 +93,8 @@ class ProductManager {
 }
 
 const productManager = new ProductManager();
+
+// Define o path para a criação do arquivo
 productManager.path = './products.txt';
 
 // Cria o arquivo no path especificado
@@ -101,7 +103,6 @@ productManager.initializeProducts();
 // Adicionando um novo produto
 console.log('-------------------')
 console.log('Adicionando produto 1')
-console.log('-------------------')
 productManager.addProduct({
   title: 'Produto 1',
   description: 'Descrição do produto 1',
@@ -110,10 +111,10 @@ productManager.addProduct({
   stock: 1000,
   thumbnail: 'https://picsum.photos/200/200'
 });
+console.log('-------------------')
 
 console.log('-------------------')
 console.log('Adicionando produto 2')
-console.log('-------------------')
 productManager.addProduct({
   title: 'Produto 2',
   description: 'Descrição do produto 2',
@@ -122,27 +123,28 @@ productManager.addProduct({
   stock: 1000,
   thumbnail: 'https://picsum.photos/200/200'
 });
+console.log('-------------------')
 
 
 console.log('-------------------')
 console.log('Pegando produto com id 1')
-console.log('-------------------')
 productManager.getProductById(1);
+console.log('-------------------')
 
 console.log('-------------------')
 console.log('Ajustando o produto com id 2')
-console.log('-------------------')
 productManager.updateProduct(2, {
   title: 'Produto com Title Alterado',
 })
+console.log('-------------------')
 
 console.log('-------------------')
 console.log('Mostrando o produto com os valores alterados')
-console.log('-------------------')
 productManager.getProductById(2);
+console.log('-------------------')
 
 
 console.log('-------------------')
 console.log('Deletando o produto com id 1, agora deve ficar só o produto com id 2')
-console.log('-------------------')
 productManager.deleteProduct(1);
+console.log('-------------------')
