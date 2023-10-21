@@ -11,9 +11,9 @@ app.get('/products', async (req, res) => {
   const allProducts = await productManager.getProducts();
 
   if (!allProducts) {
-    return res.send({ error: 'Products not found' });
+    res.send({ error: 'Products not found' });
   }
-  
+
   const productsToReturn = allProducts.slice(0, limit);
   res.json(productsToReturn);
 })
@@ -22,7 +22,7 @@ app.get('/products/:pid', async (req, res) => {
   const allProducts = await productManager.getProducts();
   
   if (!allProducts) {
-    return res.send({ error: 'Products not found' });
+    res.send({ error: 'Products not found' });
   }
   
   const id = Number(req.params.pid);
