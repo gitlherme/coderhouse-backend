@@ -9,12 +9,22 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/products', async (req, res) => {
   const { limit } = req.query;
   const allProducts = await productManager.getProducts();
+
+  if (!allProducts) {
+    return res.send({ error: 'Products not found' });
+  }
+  
   const productsToReturn = allProducts.slice(0, limit);
   res.json(productsToReturn);
 })
 
 app.get('/products/:pid', async (req, res) => {
   const allProducts = await productManager.getProducts();
+  
+  if (!allProducts) {
+    return res.send({ error: 'Products not found' });
+  }
+  
   const id = Number(req.params.pid);
   const product = allProducts.find((product) => product.id === id);
   if (!product) {
