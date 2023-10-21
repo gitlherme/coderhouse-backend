@@ -1,0 +1,1 @@
+[{"id":1,"title":"Produto 1","description":"Descrição do produto 1","price":100,"thumbnail":"https://picsum.photos/200/200","code":1234,"stock":1000}]
