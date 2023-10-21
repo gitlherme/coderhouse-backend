@@ -10,7 +10,7 @@ export class ProductManager {
   }
 
   getProducts() {
-    const products = fs.readFileSync('./src/products.txt', 'utf-8');
+    const products = fs.readFileSync(this.path, 'utf-8');
     return JSON.parse(products);
   }
 
